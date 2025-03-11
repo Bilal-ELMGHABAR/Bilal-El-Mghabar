@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Spam Detection</title>  <!-- Le titre de la page -->
+    <style>
+        body {
+            text-align: center;
+        }
+
+        button {
+            color: aliceblue;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Spam Detection</h1>  <!-- Le titre principal de la page -->
+
+    <div>
+        <form method="POST" action="/predict">  <!-- Formulaire, méthode POST et action vers l'endpoint de prédiction -->
+            <textarea rows="4" cols="50" name="email" placeholder="Entrez votre email" autocomplete="off"></textarea> 
+            <div>
+                <button type="submit">Prédire</button>  <!-- Bouton de soumission -->
+                <a href="/">Réinitialiser</a>  <!-- Lien pour réinitialiser -->
+            </div>
+        </form>
+    </div>
+
+    <div>
+        {% if prediction %}  <!-- Vérifie si une prédiction existe -->
+            {% if prediction == 1 %}  <!-- Vérifie si la prédiction est 1 (spam) -->
+                <h2 style="color: red">C'est un spam !</h2>  <!-- Message d'avertissement pour le spam -->
+            {% else %}
+                <h2 style="color: green">Ce n'est pas un spam.</h2>  <!-- Message pour un email non spam -->
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
